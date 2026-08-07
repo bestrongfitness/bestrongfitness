@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite (usually `http://localhost:5173`).
+Open the local URL printed by Vite (usually `http://localhost:5173/be_strong_fitness/`).
 
 ## Scripts
 
@@ -20,6 +20,15 @@ Open the local URL printed by Vite (usually `http://localhost:5173`).
 ## Stack
 
 React, TypeScript, Vite, Tailwind CSS, shadcn/ui primitives, Motion, Lucide React, Embla Carousel, and Sonner.
+
+## Deploy (GitHub Pages)
+
+The site uses Vite `base: '/be_strong_fitness/'` and deploys via `.github/workflows/deploy-pages.yml`.
+
+1. Push to `main` or `feature-be-strong-fitness-website`.
+2. In the repo open **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**.
+3. After the workflow succeeds, visit:
+   `https://code-with-mk.github.io/be_strong_fitness/`
 
 ## Content updates
 
