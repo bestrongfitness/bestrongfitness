@@ -23,7 +23,7 @@ React, TypeScript, Vite, Tailwind CSS, shadcn/ui primitives, Motion, Lucide Reac
 
 ## Content updates
 
-Business copy, facilities, testimonials, and contact details live in `src/data/site-content.ts`. Sample reviews remain clearly marked until approved member review text is supplied.
+Business copy, facilities, testimonials, and contact details live in `src/data/site-content.ts`. Member quotes on the site are taken from public Google reviews for Be Strong Fitness.
 
 ### Gym photos
 

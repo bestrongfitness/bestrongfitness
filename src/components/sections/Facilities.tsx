@@ -1,69 +1,119 @@
-import { ArrowUpRight } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import { useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 
 import { facilities } from '@/data/site-content';
 import { Container } from '@/components/ui/container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { revealUp, staggerContainer, viewportOnce } from '@/lib/motion';
+import { cn } from '@/lib/utils';
+import { imageCrossfade, revealUp, staggerContainer, viewportOnce } from '@/lib/motion';
 
 export function Facilities() {
   const reduceMotion = useReducedMotion();
+  const [activeId, setActiveId] = useState(facilities[0]?.id ?? '');
+  const active = facilities.find((facility) => facility.id === activeId) ?? facilities[0];
 
   return (
-    <Container as="section" id="facilities" className="py-20 sm:py-28 lg:py-36">
-      <motion.div
-        className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between"
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-        variants={reduceMotion ? undefined : staggerContainer}
-      >
-        <motion.div variants={reduceMotion ? undefined : revealUp}>
+    <section id="facilities" className="bg-ink text-paper">
+      <Container className="py-20 sm:py-28 lg:py-36">
+        <motion.div
+          className="max-w-2xl"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={reduceMotion ? undefined : revealUp}
+        >
           <SectionHeading
-            eyebrow="Room to work"
-            title="The essentials, done well."
-            description="Purposeful zones made for consistent training."
+            eyebrow="Training zones"
+            title="Strength. Weights. Cardio."
+            description="A normal gym floor done properly—pick a zone and see the space."
+            inverted
           />
         </motion.div>
-        <motion.p variants={reduceMotion ? undefined : revealUp} className="max-w-xs text-sm leading-6 text-ink/60">
-          Every corner is designed to support the work—not distract from it.
-        </motion.p>
-      </motion.div>
 
-      <motion.div
-        className="mt-12 grid gap-5 md:grid-cols-12"
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-        variants={reduceMotion ? undefined : staggerContainer}
-      >
-        {facilities.map((facility, index) => (
-          <motion.article
-            key={facility.id}
-            variants={reduceMotion ? undefined : revealUp}
-            className={index === 0 ? 'group md:col-span-7' : 'group md:col-span-5'}
+        <div className="mt-12 grid gap-8 lg:mt-16 lg:grid-cols-12 lg:gap-10 lg:items-stretch">
+          <motion.div
+            className="flex flex-col gap-2 lg:col-span-4"
+            role="tablist"
+            aria-label="Gym training zones"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            variants={reduceMotion ? undefined : staggerContainer}
           >
-            <div className="relative aspect-[1.1] overflow-hidden rounded-[var(--radius-card)] bg-paper-strong">
-              <img
-                src={facility.image}
-                alt={facility.imageAlt}
-                className="size-full object-cover transition duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
-              <span className="absolute left-4 top-4 rounded-full bg-paper/90 px-3 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.14em]">
-                0{index + 1}
-              </span>
-            </div>
-            <div className="flex items-start justify-between gap-5 px-1 pt-5">
-              <div>
-                <h3 className="text-xl font-bold tracking-[-0.035em]">{facility.title}</h3>
-                <p className="mt-2 max-w-sm text-sm leading-6 text-ink/62">{facility.description}</p>
+            {facilities.map((facility, index) => {
+              const selected = facility.id === active?.id;
+              return (
+                <motion.button
+                  key={facility.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  id={`zone-tab-${facility.id}`}
+                  aria-controls="zone-panel"
+                  variants={reduceMotion ? undefined : revealUp}
+                  onClick={() => setActiveId(facility.id)}
+                  className={cn(
+                    'group rounded-[var(--radius-card)] border px-5 py-5 text-left transition duration-300',
+                    selected
+                      ? 'border-amber bg-paper/5'
+                      : 'border-paper/15 hover:border-paper/35 hover:bg-paper/5',
+                  )}
+                >
+                  <span className="font-mono text-[0.62rem] tracking-[0.14em] text-amber">
+                    0{index + 1}
+                  </span>
+                  <h3 className="mt-3 text-xl font-bold tracking-[-0.03em]">{facility.title}</h3>
+                  <p
+                    className={cn(
+                      'mt-2 text-sm leading-6 transition-colors',
+                      selected ? 'text-paper/75' : 'text-paper/50 group-hover:text-paper/70',
+                    )}
+                  >
+                    {facility.description}
+                  </p>
+                </motion.button>
+              );
+            })}
+          </motion.div>
+
+          <motion.div
+            id="zone-panel"
+            role="tabpanel"
+            aria-labelledby={active ? `zone-tab-${active.id}` : undefined}
+            className="relative min-h-[22rem] overflow-hidden rounded-[var(--radius-card)] bg-ink-soft sm:min-h-[28rem] lg:col-span-8 lg:min-h-[36rem]"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            variants={reduceMotion ? undefined : revealUp}
+          >
+            <AnimatePresence mode="wait">
+              {active ? (
+                <motion.img
+                  key={active.id}
+                  src={active.image}
+                  alt={active.imageAlt}
+                  className="absolute inset-0 size-full object-cover"
+                  {...(reduceMotion
+                    ? {}
+                    : {
+                        initial: imageCrossfade.initial,
+                        animate: imageCrossfade.animate,
+                        exit: imageCrossfade.exit,
+                        transition: imageCrossfade.transition,
+                      })}
+                />
+              ) : null}
+            </AnimatePresence>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+            {active ? (
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-amber">{active.title}</p>
+                <p className="mt-2 max-w-md text-sm leading-6 text-paper/80 sm:text-base">{active.description}</p>
               </div>
-              <ArrowUpRight className="mt-1 shrink-0 text-amber-deep transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size={20} />
-            </div>
-          </motion.article>
-        ))}
-      </motion.div>
-    </Container>
+            ) : null}
+          </motion.div>
+        </div>
+      </Container>
+    </section>
   );
 }

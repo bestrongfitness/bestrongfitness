@@ -8,7 +8,15 @@ export type SectionHeadingProps = {
 export function SectionHeading({ eyebrow, title, description, inverted = false }: SectionHeadingProps) {
   return (
     <div className={inverted ? 'max-w-2xl text-paper' : 'max-w-2xl'}>
-      <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-amber-deep">{eyebrow}</p>
+      <p
+        className={
+          inverted
+            ? 'mb-4 text-xs font-bold uppercase tracking-[0.22em] text-amber'
+            : 'mb-4 text-xs font-bold uppercase tracking-[0.22em] text-amber-deep'
+        }
+      >
+        {eyebrow}
+      </p>
       <h2 className="font-display text-4xl leading-[0.96] tracking-[-0.045em] sm:text-5xl lg:text-6xl" data-size="section">
         {title}
       </h2>

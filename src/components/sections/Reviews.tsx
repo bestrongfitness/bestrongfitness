@@ -28,9 +28,9 @@ export function Reviews() {
         >
           <motion.div variants={reduceMotion ? undefined : revealUp}>
             <SectionHeading
-              eyebrow="Member reviews"
+              eyebrow="Google reviews · 4.9"
               title="A good feeling to come back to."
-              description="A few words from people building their routine with us."
+              description="Real words from members training at Be Strong Fitness."
             />
           </motion.div>
           <motion.div variants={reduceMotion ? undefined : revealUp} className="flex items-center gap-2">
@@ -67,7 +67,7 @@ export function Reviews() {
                     <Separator className="mb-4" />
                     <p className="text-sm font-bold">{review.name}</p>
                     <p className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-ink/55">
-                      {review.trainingFocus} · Sample review
+                      {review.source}
                     </p>
                   </footer>
                 </div>
