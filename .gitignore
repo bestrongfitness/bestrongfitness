@@ -1,7 +1,6 @@
-# Dependencies and local Vite output
+# Dependencies and build output (CI uploads dist/ as a Pages artifact)
 node_modules/
 dist/
-# build/ is kept tracked for manual GitHub Pages deploys
 *.local
 
 # Environment files

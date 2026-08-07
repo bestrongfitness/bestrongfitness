@@ -8,6 +8,7 @@ import { defineConfig } from 'vitest/config';
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  // Must match: https://code-with-mk.github.io/be_strong_fitness/
   base: '/be_strong_fitness/',
   plugins: [react(), tailwindcss()],
   resolve: {
@@ -16,7 +17,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'build',
+    outDir: 'dist',
     emptyOutDir: true,
   },
   test: {

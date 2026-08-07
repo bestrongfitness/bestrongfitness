@@ -15,7 +15,7 @@ Open the local URL printed by Vite (usually `http://localhost:5173/be_strong_fit
 
 - `npm run dev` — start the development server.
 - `npm test -- --run` — run the test suite once.
-- `npm run build` — type-check and write static files to `build/`.
+- `npm run build` — type-check and write static files to `dist/`.
 
 ## Stack
 
@@ -23,17 +23,13 @@ React, TypeScript, Vite, Tailwind CSS, shadcn/ui primitives, Motion, Lucide Reac
 
 ## Deploy (GitHub Pages)
 
-Production output lives in the `build/` folder (Vite `base: '/be_strong_fitness/'`).
+**Do not** use Jekyll or “Static HTML” / “Deploy from a branch”.
 
-### Manual deploy
+1. Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**
+2. On every push to `main`, `.github/workflows/deploy.yml` installs, builds to `dist/`, and deploys.
+3. Live site: `https://code-with-mk.github.io/be_strong_fitness/`
 
-1. Run `npm run build`.
-2. Upload / commit the contents of `build/` for GitHub Pages (or point Pages at that folder).
-3. Site URL: `https://code-with-mk.github.io/be_strong_fitness/`
-
-### Actions (optional)
-
-`.github/workflows/static.yml` builds into `build/` and deploys from there on pushes to `main`.
+Vite `base` must stay `/be_strong_fitness/` (repo name) so CSS, JS, and images resolve correctly.
 
 ## Content updates
 
