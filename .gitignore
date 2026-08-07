@@ -1,6 +1,7 @@
-# Dependencies and builds
+# Dependencies and local Vite output
 node_modules/
 dist/
+# build/ is kept tracked for manual GitHub Pages deploys
 *.local
 
 # Environment files
