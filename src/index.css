@@ -1,9 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:opsz,wght@5..1200,600;5..1200,700;5..1200,800&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+}
+
 :root {
-  color: #181715;
-  background: #f7f2e9;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  --ink: #181715;
+  --ink-soft: #2b2926;
+  --paper: #f6f1e7;
+  --paper-strong: #e9e0d1;
+  --amber: #dd9b48;
+  --amber-deep: #a85b1b;
+  --line: rgba(24, 23, 21, 0.18);
+  --radius-card: 1.25rem;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font-sans);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -20,6 +35,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  background:
+    radial-gradient(circle at 87% 12%, rgba(221, 155, 72, 0.13), transparent 22rem),
+    var(--paper);
 }
 
 button,
