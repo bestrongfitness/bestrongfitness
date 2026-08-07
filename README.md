@@ -9,17 +9,31 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite (usually `http://localhost:5173`).
+Open the local URL printed by Vite (usually `http://localhost:5173/be_strong_fitness/`).
 
 ## Scripts
 
 - `npm run dev` — start the development server.
 - `npm test -- --run` — run the test suite once.
-- `npm run build` — type-check and build the production app.
+- `npm run build` — type-check and write static files to `build/`.
 
 ## Stack
 
 React, TypeScript, Vite, Tailwind CSS, shadcn/ui primitives, Motion, Lucide React, Embla Carousel, and Sonner.
+
+## Deploy (GitHub Pages)
+
+Production output lives in the `build/` folder (Vite `base: '/be_strong_fitness/'`).
+
+### Manual deploy
+
+1. Run `npm run build`.
+2. Upload / commit the contents of `build/` for GitHub Pages (or point Pages at that folder).
+3. Site URL: `https://code-with-mk.github.io/be_strong_fitness/`
+
+### Actions (optional)
+
+`.github/workflows/static.yml` builds into `build/` and deploys from there on pushes to `main`.
 
 ## Content updates
 

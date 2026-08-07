@@ -1,3 +1,5 @@
+import { asset } from '../lib/assets';
+
 export type Facility = {
   id: string;
   title: string;
@@ -41,7 +43,7 @@ export const googleMapsDirectionsUrl =
 
 /** Full-floor cover shot for the homepage hero. */
 export const heroImage = {
-  src: '/images/gym/cover.jpg',
+  src: asset('images/gym/cover.jpg'),
   alt: 'Wide view of the Be Strong Fitness training floor with white machines and overhead lighting.',
 } as const;
 
@@ -52,7 +54,7 @@ export const facilities: Facility[] = [
     title: 'Strength zone',
     description:
       'Selectorized machines and open lanes covering every major muscle group—built for focused, progressive sessions.',
-    image: '/images/gym/facility-1.jpg',
+    image: asset('images/gym/facility-1.jpg'),
     imageAlt: 'White-framed strength machines in the Be Strong Fitness gym.',
   },
   {
@@ -60,7 +62,7 @@ export const facilities: Facility[] = [
     title: 'Free weights',
     description:
       'Dumbbells, racks, and benches on rubber flooring for heavy lifts and the work that builds real confidence.',
-    image: '/images/gym/hero.jpg',
+    image: asset('images/gym/hero.jpg'),
     imageAlt: 'Branded Be Strong Fitness dumbbells lined up on a rack.',
   },
   {
@@ -68,14 +70,14 @@ export const facilities: Facility[] = [
     title: 'Cardio zone',
     description:
       'Treadmills lined up for endurance work—train at your own pace with room to settle in and keep going.',
-    image: '/images/gym/cardio.jpg',
+    image: asset('images/gym/cardio.jpg'),
     imageAlt: 'Row of treadmills in the Be Strong Fitness cardio zone.',
   },
 ];
 
 /** Exterior photo used in the visit section. */
 export const visitImage = {
-  src: '/images/gym/facility-3.jpg',
+  src: asset('images/gym/facility-3.jpg'),
   alt: 'S&S Square building exterior with Be Strong Fitness signage on the top floor.',
 } as const;
 
