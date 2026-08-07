@@ -1,6 +1,7 @@
-# Dependencies and build output (CI uploads dist/ as a Pages artifact)
+# Dependencies and CI build output (deploy.yml uploads dist/ as Pages artifact)
 node_modules/
 dist/
+build/
 *.local
 
 # Environment files
