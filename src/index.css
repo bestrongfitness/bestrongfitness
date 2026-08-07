@@ -5,19 +5,21 @@
   --font-display: "Playfair Display", Georgia, serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, monospace;
+
+  --color-ink: #181715;
+  --color-ink-soft: #2b2926;
+  --color-paper: #f6f1e7;
+  --color-paper-strong: #e9e0d1;
+  --color-amber: #dd9b48;
+  --color-amber-deep: #a85b1b;
+  --color-line: rgb(24 23 21 / 18%);
+
+  --radius-card: 1.25rem;
 }
 
 :root {
-  --ink: #181715;
-  --ink-soft: #2b2926;
-  --paper: #f6f1e7;
-  --paper-strong: #e9e0d1;
-  --amber: #dd9b48;
-  --amber-deep: #a85b1b;
-  --line: rgba(24, 23, 21, 0.18);
-  --radius-card: 1.25rem;
-  color: var(--ink);
-  background: var(--paper);
+  color: var(--color-ink);
+  background: var(--color-paper);
   font-family: var(--font-sans);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -36,8 +38,8 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    radial-gradient(circle at 87% 12%, rgba(221, 155, 72, 0.13), transparent 22rem),
-    var(--paper);
+    radial-gradient(circle at 87% 12%, rgb(221 155 72 / 13%), transparent 22rem),
+    var(--color-paper);
 }
 
 button,

@@ -1,39 +1,93 @@
-import { ArrowUpRight, Clock3, MapPin } from 'lucide-react';
+import { ArrowUpRight, Clock3, MapPin, Phone } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 
-import { contactDetails, googleMapsUrl } from '../../data/site-content';
+import { contactDetails, googleMapsDirectionsUrl, visitImage } from '@/data/site-content';
+import { Button } from '@/components/ui/button';
+import { Container } from '@/components/ui/container';
+import { Separator } from '@/components/ui/separator';
+import { revealUp, staggerContainer, viewportOnce } from '@/lib/motion';
+
+const contactIcons = [MapPin, Clock3, Phone] as const;
 
 export function VisitContact() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section id="visit" className="relative overflow-hidden bg-[var(--amber)]">
-      <div className="absolute -right-24 -top-24 size-80 rounded-full border-[38px] border-[var(--paper)]/20 sm:size-[30rem]" />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-12 lg:px-12 lg:py-36">
-        <div className="lg:col-span-7">
-          <p className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[var(--ink)]/70">Come as you are</p>
-          <h2 className="font-display mt-5 max-w-3xl text-5xl leading-[0.9] tracking-[-0.06em] sm:text-6xl lg:text-8xl">Your next session is waiting.</h2>
-          <p className="mt-7 max-w-md text-base leading-7 text-[var(--ink)]/72 sm:text-lg">Drop in, see the space, and find out how Be Strong Fitness can fit your routine.</p>
-          <a href={googleMapsUrl} target="_blank" rel="noreferrer" className="group mt-10 inline-flex items-center gap-3 rounded-full bg-[var(--ink)] px-6 py-3.5 text-sm font-bold text-[var(--paper)] transition hover:bg-[var(--ink-soft)]">
-            Get directions <ArrowUpRight size={17} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </div>
-        <div className="self-end rounded-[var(--radius-card)] bg-[var(--paper)] p-6 sm:p-8 lg:col-span-4 lg:col-start-9">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--amber-deep)]">Find us</p>
-          <div className="mt-6 space-y-5">
-            {contactDetails.map((detail, index) => {
-              const Icon = index === 1 ? Clock3 : MapPin;
-              return (
-                <div key={detail.label} className="flex gap-3">
-                  <Icon size={18} className="mt-0.5 shrink-0 text-[var(--amber-deep)]" />
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.12em] text-[var(--ink)]/45">{detail.label}</p>
-                    {detail.href ? <a href={detail.href} target="_blank" rel="noreferrer" className="mt-1 inline-block text-sm font-semibold hover:text-[var(--amber-deep)]">{detail.value}</a> : <p className="mt-1 text-sm font-semibold">{detail.value}</p>}
-                  </div>
-                </div>
-              );
-            })}
+    <section id="visit" className="relative overflow-hidden bg-amber">
+      <div className="absolute -right-24 -top-24 size-80 rounded-full border-[38px] border-paper/20 sm:size-[30rem]" />
+      <Container className="relative grid gap-12 py-20 sm:py-28 lg:grid-cols-12 lg:py-36">
+        <motion.div
+          className="lg:col-span-7"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={reduceMotion ? undefined : staggerContainer}
+        >
+          <motion.p variants={reduceMotion ? undefined : revealUp} className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.16em] text-ink/70">
+            Come as you are
+          </motion.p>
+          <motion.h2
+            variants={reduceMotion ? undefined : revealUp}
+            className="font-display mt-5 max-w-3xl text-5xl leading-[0.9] tracking-[-0.06em] sm:text-6xl lg:text-8xl"
+          >
+            Your next session is waiting.
+          </motion.h2>
+          <motion.p variants={reduceMotion ? undefined : revealUp} className="mt-7 max-w-md text-base leading-7 text-ink/72 sm:text-lg">
+            Drop in, see the space, and find out how Be Strong Fitness can fit your routine.
+          </motion.p>
+          <motion.div variants={reduceMotion ? undefined : revealUp}>
+            <Button asChild className="group mt-10" size="lg">
+              <a href={googleMapsDirectionsUrl} target="_blank" rel="noreferrer">
+                Get directions{' '}
+                <ArrowUpRight size={17} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </Button>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="self-end space-y-5 lg:col-span-4 lg:col-start-9"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={reduceMotion ? undefined : revealUp}
+        >
+          <div className="overflow-hidden rounded-[var(--radius-card)]">
+            <img src={visitImage.src} alt={visitImage.alt} className="aspect-[4/3] w-full object-cover" loading="lazy" />
           </div>
-          <p className="mt-8 border-t border-[var(--line)] pt-5 text-xs leading-5 text-[var(--ink)]/55">Contact number and full opening hours will be added after confirmation from the gym.</p>
-        </div>
-      </div>
+          <div className="rounded-[var(--radius-card)] bg-paper p-6 sm:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-deep">Find us</p>
+            <div className="mt-6 space-y-5">
+              {contactDetails.map((detail, index) => {
+                const Icon = contactIcons[index] ?? MapPin;
+                return (
+                  <div key={detail.label} className="flex gap-3">
+                    <Icon size={18} className="mt-0.5 shrink-0 text-amber-deep" />
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.12em] text-ink/45">{detail.label}</p>
+                      {detail.href ? (
+                        <a
+                          href={detail.href}
+                          {...(detail.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
+                          className="mt-1 inline-block text-sm font-semibold hover:text-amber-deep"
+                        >
+                          {detail.value}
+                        </a>
+                      ) : (
+                        <p className="mt-1 text-sm font-semibold">{detail.value}</p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <Separator className="mt-8" />
+            <p className="mt-5 text-xs leading-5 text-ink/55">
+              Above Karthikeya Silks · Kakatiya Nagar, Beeramguda, Hyderabad.
+            </p>
+          </div>
+        </motion.div>
+      </Container>
     </section>
   );
 }

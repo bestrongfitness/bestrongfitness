@@ -27,35 +27,54 @@ export type ContactDetail = {
   href?: string;
 };
 
+export const gymCoordinates = {
+  lat: 17.5085578,
+  lng: 78.3016454,
+} as const;
+
+/** Official Google Maps place listing for Be Strong Fitness. */
 export const googleMapsUrl =
-  'https://www.google.com/maps/search/?api=1&query=17.5085578%2C78.3016454';
+  'https://www.google.com/maps/place/Be+Strong+Fitness/@17.5085578,78.3016454,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb933132a18ad1:0x18665c81ebe02226!8m2!3d17.5085578!4d78.3016454!16s%2Fg%2F11yjy03l8k';
+
+/** Opens turn-by-turn directions to the gym place pin. */
+export const googleMapsDirectionsUrl =
+  'https://www.google.com/maps/dir/?api=1&destination=Be+Strong+Fitness%2C+17.5085578%2C+78.3016454';
+
+/** Hero media from Google Maps listing photos (saved locally). */
+export const heroImage = {
+  src: '/images/gym/hero.jpg',
+  alt: 'Be Strong Fitness branded dumbbells lined up on a rack.',
+} as const;
 
 export const facilities: Facility[] = [
   {
     id: 'strength-floor',
     title: 'Strength floor',
     description: 'A focused space for compound lifts, progressive overload, and training that builds confidence.',
-    image:
-      'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1400&q=85',
-    imageAlt: 'Athlete preparing for a barbell lift in a gym.',
+    image: '/images/gym/hero.jpg',
+    imageAlt: 'Branded Be Strong Fitness dumbbells lined up on a rack.',
   },
   {
-    id: 'cardio-zone',
-    title: 'Cardio zone',
-    description: 'Build endurance at your own pace with room to move, reset, and keep going.',
-    image:
-      'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=1400&q=85',
-    imageAlt: 'Person training on gym equipment in a bright fitness studio.',
+    id: 'machine-floor',
+    title: 'Machine floor',
+    description: 'Clean selectorized stations and open lanes so you can train with purpose at your own pace.',
+    image: '/images/gym/facility-1.jpg',
+    imageAlt: 'White-framed strength machines in the Be Strong Fitness gym.',
   },
   {
-    id: 'coaching',
-    title: 'Guided training',
-    description: 'Get practical support, safer form, and a plan that meets you where you are.',
-    image:
-      'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1400&q=85',
-    imageAlt: 'Trainer guiding a member through a workout.',
+    id: 'training-racks',
+    title: 'Training racks',
+    description: 'Racks, benches, and room to move—built for consistent sessions and real progress.',
+    image: '/images/gym/facility-2.jpg',
+    imageAlt: 'Power racks and strength machines on the Be Strong Fitness training floor.',
   },
 ];
+
+/** Exterior photo used in the visit section. */
+export const visitImage = {
+  src: '/images/gym/facility-3.jpg',
+  alt: 'S&S Square building exterior with Be Strong Fitness signage on the top floor.',
+} as const;
 
 export const benefits: Benefit[] = [
   {
@@ -103,7 +122,11 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const contactDetails: ContactDetail[] = [
-  { label: 'Location', value: 'Be Strong Fitness, Hyderabad', href: googleMapsUrl },
-  { label: 'Hours', value: 'Hours available at the gym' },
-  { label: 'Enquiries', value: 'Visit us to get started' },
+  {
+    label: 'Location',
+    value: 'Beeramguda Main Rd, Kakatiya Nagar, Hyderabad',
+    href: googleMapsUrl,
+  },
+  { label: 'Hours', value: 'Open daily · 5 am–10 pm' },
+  { label: 'Phone', value: '086867 07068', href: 'tel:+918686707068' },
 ];
