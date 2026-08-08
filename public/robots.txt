@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://code-with-mk.github.io/be_strong_fitness/sitemap.xml

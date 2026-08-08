@@ -23,9 +23,9 @@ export function Facilities() {
           variants={reduceMotion ? undefined : revealUp}
         >
           <SectionHeading
-            eyebrow="Training zones"
+            eyebrow="Training zones at Be Strong Fitness"
             title="Strength. Weights. Cardio."
-            description="A normal gym floor done properly—pick a zone and see the space."
+            description="A Beerumguda gym floor done properly—pick a zone and see the Beeramguda training space."
             inverted
           />
         </motion.div>

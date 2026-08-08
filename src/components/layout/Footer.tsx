@@ -15,17 +15,17 @@ export function Footer() {
             <span className="font-mono text-[0.55rem] uppercase tracking-[0.16em] text-paper/60">fitness</span>
           </a>
           <p className="mt-3 max-w-sm text-sm leading-6 text-paper/55">
-            A welcoming home for purposeful training in Hyderabad.
+            Be Strong Fitness — Beerumguda gym in Beeramguda, Hyderabad for strength, free weights, and cardio.
           </p>
         </div>
         <div className="flex gap-3">
           <Button asChild variant="outline" size="icon" className="border-paper/20 text-paper hover:bg-amber hover:text-ink">
-            <a href={googleMapsUrl} target="_blank" rel="noreferrer" aria-label="Find Be Strong Fitness on Google Maps">
+            <a href={googleMapsUrl} target="_blank" rel="noreferrer" aria-label="Find Be Strong Fitness Beerumguda gym on Google Maps">
               <MapPinned size={18} />
             </a>
           </Button>
           <Button asChild variant="outline" size="icon" className="border-paper/20 text-paper hover:bg-amber hover:text-ink">
-            <a href="#visit" aria-label="Visit Be Strong Fitness">
+            <a href="#visit" aria-label="Visit Be Strong Fitness in Beeramguda">
               <Share2 size={18} />
             </a>
           </Button>
@@ -33,7 +33,7 @@ export function Footer() {
       </Container>
       <Separator className="bg-paper/15" />
       <div className="px-5 py-4 text-center font-mono text-[0.55rem] uppercase tracking-[0.14em] text-paper/40">
-        © {new Date().getFullYear()} Be Strong Fitness
+        © {new Date().getFullYear()} Be Strong Fitness · Beeramguda / Beerumguda, Hyderabad
       </div>
     </footer>
   );

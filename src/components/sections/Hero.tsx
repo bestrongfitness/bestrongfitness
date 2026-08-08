@@ -48,7 +48,7 @@ export function Hero() {
             variants={reduceMotion ? undefined : revealItem}
             className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-amber"
           >
-            <span className="size-2 rounded-full bg-amber" /> Hyderabad · Beeramguda · Open daily
+            <span className="size-2 rounded-full bg-amber" /> Be Strong Fitness · Beerumguda Gym · Beeramguda
           </motion.p>
           <motion.h1
             variants={reduceMotion ? undefined : revealItem}
@@ -61,7 +61,7 @@ export function Hero() {
             className="mt-8 flex max-w-xl flex-col gap-6 sm:mt-10 sm:flex-row sm:items-end sm:justify-between"
           >
             <p className="max-w-sm text-base leading-7 text-paper/72 sm:text-lg">
-              A focused, welcoming gym for strength, free weights, and cardio—whether it’s day one or your next level.
+              Be Strong Fitness is a Beerumguda gym in Beeramguda, Hyderabad—strength, free weights, and cardio for day one or your next level.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild variant="secondary" className="group self-start">
@@ -84,7 +84,7 @@ export function Hero() {
           transition={{ delay: 0.9, duration: 0.8 }}
         >
           <MapPin size={14} aria-hidden="true" />
-          <span>Strength · Free weights · Cardio</span>
+          <span>Be Strong Fitness · Beerumguda · Beeramguda</span>
         </motion.div>
       </Container>
     </section>

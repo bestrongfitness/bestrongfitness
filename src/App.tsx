@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Header />
-      <main aria-label="Be Strong Fitness homepage">
+      <main aria-label="Be Strong Fitness Beerumguda gym homepage">
         <Hero />
         <Welcome />
         <TrainingExperience />

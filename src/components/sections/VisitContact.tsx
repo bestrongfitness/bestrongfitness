@@ -33,7 +33,7 @@ export function VisitContact() {
             Your next session is waiting.
           </motion.h2>
           <motion.p variants={reduceMotion ? undefined : revealUp} className="mt-7 max-w-md text-base leading-7 text-ink/72 sm:text-lg">
-            Drop in, see the space, and find out how Be Strong Fitness can fit your routine.
+            Visit Be Strong Fitness on Beeramguda Main Rd—your local Beerumguda gym for strength, free weights, and cardio.
           </motion.p>
           <motion.div variants={reduceMotion ? undefined : revealUp}>
             <Button asChild className="group mt-10" size="lg">
@@ -83,7 +83,7 @@ export function VisitContact() {
             </div>
             <Separator className="mt-8" />
             <p className="mt-5 text-xs leading-5 text-ink/55">
-              Above Karthikeya Silks · Kakatiya Nagar, Beeramguda, Hyderabad.
+              Above Karthikeya Silks · Kakatiya Nagar, Beeramguda (Beerumguda), Hyderabad.
             </p>
           </div>
         </motion.div>

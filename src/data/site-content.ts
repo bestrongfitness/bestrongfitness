@@ -177,7 +177,7 @@ export const testimonials: Testimonial[] = [
 export const contactDetails: ContactDetail[] = [
   {
     label: 'Location',
-    value: 'Beeramguda Main Rd, Kakatiya Nagar, Hyderabad',
+    value: 'Be Strong Fitness, Beeramguda (Beerumguda), Hyderabad',
     href: googleMapsUrl,
   },
   { label: 'Hours', value: 'Open daily · 5 am–10 pm' },
