@@ -44,7 +44,7 @@ export const googleMapsDirectionsUrl =
 /** Full-floor cover shot for the homepage hero. */
 export const heroImage = {
   src: asset('images/gym/cover.jpg'),
-  alt: 'Wide view of the Be Strong Fitness training floor with white machines and overhead lighting.',
+  alt: 'Wide view of the Be Strong Fitness floor with white machines, black rubber flooring, and overhead lighting.',
 } as const;
 
 /** Normal gym training zones — no recovery suite. */
@@ -55,7 +55,7 @@ export const facilities: Facility[] = [
     description:
       'Selectorized machines and open lanes covering every major muscle group—built for focused, progressive sessions.',
     image: asset('images/gym/facility-1.jpg'),
-    imageAlt: 'White-framed strength machines in the Be Strong Fitness gym.',
+    imageAlt: 'White-framed strength machines across the Be Strong Fitness gym floor.',
   },
   {
     id: 'free-weights',
@@ -63,7 +63,7 @@ export const facilities: Facility[] = [
     description:
       'Dumbbells, racks, and benches on rubber flooring for heavy lifts and the work that builds real confidence.',
     image: asset('images/gym/hero.jpg'),
-    imageAlt: 'Branded Be Strong Fitness dumbbells lined up on a rack.',
+    imageAlt: 'Dumbbell rack and benches in the Be Strong Fitness free-weights area.',
   },
   {
     id: 'cardio-zone',
@@ -75,10 +75,16 @@ export const facilities: Facility[] = [
   },
 ];
 
+/** Floor shot used in the welcome section. */
+export const floorImage = {
+  src: asset('images/gym/facility-2.jpg'),
+  alt: 'Weight benches and machines on the Be Strong Fitness training floor.',
+} as const;
+
 /** Exterior photo used in the visit section. */
 export const visitImage = {
   src: asset('images/gym/facility-3.jpg'),
-  alt: 'S&S Square building exterior with Be Strong Fitness signage on the top floor.',
+  alt: 'Night view of S&S Square with the Be Strong Fitness sign above Karthikeya Silks.',
 } as const;
 
 export const benefits: Benefit[] = [

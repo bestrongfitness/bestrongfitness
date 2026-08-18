@@ -1,6 +1,7 @@
 import { ArrowDown } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 
+import { floorImage } from '@/data/site-content';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { revealUp, viewportOnce } from '@/lib/motion';
@@ -32,6 +33,12 @@ export function Welcome() {
             Explore your training space <ArrowDown size={16} />
           </a>
         </Button>
+        <img
+          src={floorImage.src}
+          alt={floorImage.alt}
+          className="mt-12 aspect-[16/10] w-full rounded-[var(--radius-card)] object-cover"
+          loading="lazy"
+        />
       </motion.div>
     </Container>
   );
