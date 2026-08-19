@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite (usually `http://localhost:5173/be_strong_fitness/`).
+Open the local URL printed by Vite (usually `http://localhost:5173/bestrongfitness/`).
 
 ## Scripts
 
@@ -27,9 +27,9 @@ React, TypeScript, Vite, Tailwind CSS, shadcn/ui primitives, Motion, Lucide Reac
 
 1. Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**
 2. On every push to `main`, `.github/workflows/deploy.yml` installs, builds to `dist/`, and deploys.
-3. Live site: `https://code-with-mk.github.io/be_strong_fitness/`
+3. Live site: `https://bestrongfitness.github.io/bestrongfitness/`
 
-Vite `base` must stay `/be_strong_fitness/` (repo name) so CSS, JS, and images resolve correctly.
+Vite `base` must stay `/bestrongfitness/` (repo name) so CSS, JS, and images resolve correctly.
 
 ## Content updates
 
