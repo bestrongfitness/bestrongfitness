@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://code-with-mk.github.io/be_strong_fitness/sitemap.xml
+Sitemap: https://bestrongfitness.github.io/bestrongfitness/sitemap.xml
