@@ -39,18 +39,25 @@ export function TrainingExperience() {
           viewport={viewportOnce}
           variants={reduceMotion ? undefined : staggerContainer}
         >
-          {pillars.map(({ title, body, icon: Icon }, index) => (
+          {pillars.map(({ title, body, icon: Icon }) => (
             <motion.article
               key={title}
               variants={reduceMotion ? undefined : revealUp}
               whileHover={reduceMotion ? undefined : { y: -4 }}
               transition={{ type: 'spring', stiffness: 320, damping: 24 }}
-              className="group border-line p-7 first:pl-0 max-md:border-b md:border-r md:p-8 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
+              className="group border-line py-7 max-md:border-b md:border-r md:px-8 md:py-8 md:last:border-r-0"
             >
-              <span className="font-mono text-[0.62rem] tracking-[0.14em] text-amber-deep">0{index + 1}</span>
-              <Icon className="mt-12 text-amber-deep transition-transform duration-500 group-hover:-translate-y-1" size={27} strokeWidth={1.4} />
-              <h3 className="mt-6 text-xl font-bold tracking-[-0.03em]">{title}</h3>
-              <p className="mt-3 max-w-xs text-sm leading-6 text-ink/62">{body}</p>
+              <div className="flex gap-4">
+                <Icon
+                  className="mt-0.5 shrink-0 text-amber-deep transition-transform duration-500 group-hover:-translate-y-1"
+                  size={27}
+                  strokeWidth={1.4}
+                />
+                <div>
+                  <h3 className="text-xl font-bold tracking-[-0.03em]">{title}</h3>
+                  <p className="mt-2 max-w-xs text-sm leading-6 text-ink/62">{body}</p>
+                </div>
+              </div>
             </motion.article>
           ))}
         </motion.div>
