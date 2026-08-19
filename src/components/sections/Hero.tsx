@@ -61,7 +61,7 @@ export function Hero() {
             className="mt-8 flex max-w-xl flex-col gap-6 sm:mt-10 sm:flex-row sm:items-end sm:justify-between"
           >
             <p className="max-w-sm text-base leading-7 text-paper/72 sm:text-lg">
-              Be Strong Fitness is a Beerumguda gym in Beeramguda, Hyderabad—strength, free weights, and cardio for day one or your next level.
+              On Beeramguda Main Road: machines that cover every lift, a proper free-weights bay, and cardio with room to work. Open 5 am–10 pm, every day.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild variant="secondary" className="group self-start">
