@@ -1,18 +1,47 @@
 import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import type { Facility } from '@/data/site-content';
 import { facilities } from '@/data/site-content';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { cn } from '@/lib/utils';
 import { easeOutExpo, revealUp, staggerContainer, viewportOnce } from '@/lib/motion';
 
 export function Facilities() {
   const reduceMotion = useReducedMotion();
-  const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'start',
+    loop: false,
+    containScroll: 'trimSnaps',
+    skipSnaps: false,
+  });
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
+
+  const onSelect = useCallback((api: NonNullable<typeof emblaApi>) => {
+    setCanPrev(api.canScrollPrev());
+    setCanNext(api.canScrollNext());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) {
+      return;
+    }
+
+    onSelect(emblaApi);
+    emblaApi.on('reInit', onSelect);
+    emblaApi.on('select', onSelect);
+
+    return () => {
+      emblaApi.off('reInit', onSelect);
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
   const previous = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const next = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
@@ -20,13 +49,13 @@ export function Facilities() {
     <section id="facilities" className="overflow-hidden bg-ink text-paper">
       <Container className="py-20 sm:py-28 lg:py-36">
         <motion.div
-          className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between"
+          className="flex flex-col gap-6"
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
           variants={reduceMotion ? undefined : staggerContainer}
         >
-          <motion.div className="max-w-2xl" variants={reduceMotion ? undefined : revealUp}>
+          <motion.div variants={reduceMotion ? undefined : revealUp}>
             <SectionHeading
               eyebrow="Training zones at Be Strong Fitness"
               title="Strength. Weights. Cardio."
@@ -40,7 +69,8 @@ export function Facilities() {
               variant="outline"
               size="icon"
               aria-label="Previous training zone"
-              className="border-paper/25 text-paper hover:bg-paper hover:text-ink"
+              disabled={!canPrev}
+              className="border-paper/25 text-paper hover:bg-paper hover:text-ink disabled:opacity-30"
               onClick={previous}
             >
               <ArrowLeft size={18} />
@@ -50,7 +80,8 @@ export function Facilities() {
               variant="outline"
               size="icon"
               aria-label="Next training zone"
-              className="border-paper/25 text-paper hover:bg-paper hover:text-ink"
+              disabled={!canNext}
+              className="border-paper/25 text-paper hover:bg-paper hover:text-ink disabled:opacity-30"
               onClick={next}
             >
               <ArrowRight size={18} />
@@ -59,17 +90,17 @@ export function Facilities() {
         </motion.div>
 
         <motion.div
-          className="mt-12 lg:hidden"
+          className="mt-10 overflow-hidden lg:hidden"
           ref={emblaRef}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
           variants={reduceMotion ? undefined : revealUp}
         >
-          <div className="-ml-4 flex">
-            {facilities.map((facility, index) => (
-              <div key={facility.id} className="min-w-0 flex-[0_0_88%] pl-4 sm:flex-[0_0_72%]">
-                <ZoneCard facility={facility} index={index} reduceMotion={Boolean(reduceMotion)} />
+          <div className="flex">
+            {facilities.map((facility) => (
+              <div key={facility.id} className="min-w-0 flex-[0_0_100%]">
+                <ZoneCard facility={facility} reduceMotion={Boolean(reduceMotion)} />
               </div>
             ))}
           </div>
@@ -82,9 +113,9 @@ export function Facilities() {
           viewport={viewportOnce}
           variants={reduceMotion ? undefined : staggerContainer}
         >
-          {facilities.map((facility, index) => (
+          {facilities.map((facility) => (
             <motion.div key={facility.id} variants={reduceMotion ? undefined : revealUp}>
-              <ZoneCard facility={facility} index={index} reduceMotion={Boolean(reduceMotion)} />
+              <ZoneCard facility={facility} reduceMotion={Boolean(reduceMotion)} />
             </motion.div>
           ))}
         </motion.div>
@@ -95,15 +126,13 @@ export function Facilities() {
 
 function ZoneCard({
   facility,
-  index,
   reduceMotion,
 }: {
   facility: Facility;
-  index: number;
   reduceMotion: boolean;
 }) {
   return (
-    <article className="group relative isolate h-[26rem] overflow-hidden rounded-[var(--radius-card)] bg-ink-soft sm:h-[30rem] lg:h-[34rem]">
+    <article className="relative isolate h-[26rem] overflow-hidden rounded-[var(--radius-card)] bg-ink-soft sm:h-[30rem] lg:h-[34rem]">
       <motion.img
         src={facility.image}
         alt={facility.imageAlt}
@@ -115,9 +144,8 @@ function ZoneCard({
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
-        <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-amber">0{index + 1}</p>
-        <h3 className="mt-3 text-2xl font-bold tracking-[-0.03em]">{facility.title}</h3>
-        <p className="mt-2 max-w-md text-sm leading-6 text-paper/80">{facility.description}</p>
+        <h3 className="text-2xl font-bold tracking-[-0.03em]">{facility.title}</h3>
+        <p className={cn('mt-2 max-w-md text-sm leading-6 text-paper/80')}>{facility.description}</p>
       </div>
     </article>
   );
